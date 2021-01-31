@@ -1,31 +1,47 @@
-import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common';
-import { Blog } from './blog.model';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Post,
+  Res,
+  HttpStatus,
+  NotFoundException,
+} from '@nestjs/common';
 import { BlogService } from './blog.service';
+import { CreateBlogDTO } from './dto/create-blog.dto';
 
 @Controller('blog')
 export class BlogController {
   constructor(private blogService: BlogService) {}
 
   @Get()
-  getAllBlogs(): Blog[] {
-    return this.blogService.getAllBlogs();
+  async getAllBlogs(@Res() res) {
+    const blogs = await this.blogService.getAllBlogs();
+    return res.status(HttpStatus.OK).json(blogs);
   }
 
-  @Get('/:id')
-  getBlogById(@Param('id') id: string): Blog {
-    return this.blogService.getBlogById(id);
+  @Get('blog/:id')
+  async getBlog(@Res() res, @Param('id') id) {
+    const blog = await this.blogService.getBlogById(id);
+    if (!blog) throw new NotFoundException('Blog does not exist!');
+    return res.status(HttpStatus.OK).json(blog);
   }
 
-  @Post()
-  createBlog(
-    @Body('title') title: string,
-    @Body('description') description: string,
-  ) {
-    return this.blogService.createBlog(title, description);
+  @Post('create')
+  async createBlog(@Res() res, @Body() createBlogDTO: CreateBlogDTO) {
+    const blog = await this.blogService.createBlog(createBlogDTO);
+
+    return res.status(HttpStatus.OK).json({
+      statusCode: 200,
+      message: 'Blog added succefully',
+      blog,
+    });
   }
 
-  @Delete('/:id')
-  deleteBlog(@Param('id') id: string): void {
-    return this.blogService.deleteTask(id);
-  }
+  // @Delete('/:id')
+  // deleteBlog(@Param('id') id: string): void {
+  //   return this.blogService.deleteTask(id);
+  // }
 }

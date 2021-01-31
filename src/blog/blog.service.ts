@@ -1,32 +1,32 @@
 import { Injectable } from '@nestjs/common';
-import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { Blog } from './blog.model';
+import { InjectModel } from '@nestjs/mongoose';
+// import { Blog } from './blog.model';
+import { Blog } from './blog.interface';
+import { CreateBlogDTO } from './dto/create-blog.dto';
 
 @Injectable()
 export class BlogService {
-  private blogs: Blog[] = [];
-  constructor(@InjectModel('Blog') private readonly blogModel: Model<any>) {}
+  // private blogs: Blog[] = [];
+  constructor(@InjectModel('Blog') private readonly blogModel: Model<Blog>) {}
 
-  getAllBlogs(): Blog[] {
-    return this.blogs;
+  async getAllBlogs(): Promise<Blog[]> {
+    const blogs = await this.blogModel.find().exec();
+    return blogs;
   }
 
-  getBlogById(id: string): Blog {
-    return this.blogs.find((item) => item.id === id);
+  async getBlogById(id): Promise<Blog> {
+    const blog = await this.blogModel.findById(id).exec();
+    return blog;
   }
 
-  createBlog(title: string, description: string) {
-    const newBlog = new this.blogModel({
-      title,
-      description,
-    });
+  async createBlog(createBlogDTO: CreateBlogDTO): Promise<Blog> {
+    const newBlog = await new this.blogModel(createBlogDTO);
 
-    const res = newBlog.save();
-    return res;
+    return newBlog.save();
   }
 
-  deleteTask(id: string): void {
-    this.blogs = this.blogs.filter((item) => item.id != id);
-  }
+  // deleteTask(id: string): void {
+  //   this.blogs = this.blogs.filter((item) => item.id != id);
+  // }
 }
