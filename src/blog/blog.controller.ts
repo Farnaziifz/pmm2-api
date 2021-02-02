@@ -8,6 +8,8 @@ import {
   Res,
   HttpStatus,
   NotFoundException,
+  Put,
+  Query,
 } from '@nestjs/common';
 import { BlogService } from './blog.service';
 import { CreateBlogDTO } from './dto/create-blog.dto';
@@ -22,26 +24,46 @@ export class BlogController {
     return res.status(HttpStatus.OK).json(blogs);
   }
 
-  @Get('blog/:id')
-  async getBlog(@Res() res, @Param('id') id) {
-    const blog = await this.blogService.getBlogById(id);
-    if (!blog) throw new NotFoundException('Blog does not exist!');
-    return res.status(HttpStatus.OK).json(blog);
-  }
-
   @Post('create')
   async createBlog(@Res() res, @Body() createBlogDTO: CreateBlogDTO) {
     const blog = await this.blogService.createBlog(createBlogDTO);
 
     return res.status(HttpStatus.OK).json({
       statusCode: 200,
-      message: 'Blog added succefully',
+      message: 'salam',
       blog,
     });
   }
 
-  // @Delete('/:id')
-  // deleteBlog(@Param('id') id: string): void {
-  //   return this.blogService.deleteTask(id);
-  // }
+  @Get('/:id')
+  async getBlog(@Res() res, @Param('id') id) {
+    const blog = await this.blogService.getBlogById(id);
+    if (!blog) throw new NotFoundException('Blog does not exist!');
+    return res.status(HttpStatus.OK).json(blog);
+  }
+
+  @Put('/update/:id')
+  async updateBlog(
+    @Res() res,
+    @Param('id') id,
+    @Body() createBlogDTO: CreateBlogDTO,
+  ) {
+    const blog = await this.blogService.updateBlog(id, createBlogDTO);
+    if (!blog) throw new NotFoundException('Blog does not exist!');
+    return res.status(HttpStatus.OK).json({
+      message: 'Blog has been successfully updated',
+      blog,
+    });
+  }
+
+  @Delete('/delete/:id')
+  async deleteBlog(@Res() res, @Param('id') id) {
+    // const customer = await this.customerService.deleteCustomer(customerID);
+    const blog = await this.blogService.deleteBlog(id);
+    if (!blog) throw new NotFoundException('Blog does not exist');
+    return res.status(HttpStatus.OK).json({
+      message: 'Blog has been deleted',
+      blog,
+    });
+  }
 }

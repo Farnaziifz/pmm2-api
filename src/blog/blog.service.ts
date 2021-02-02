@@ -26,7 +26,18 @@ export class BlogService {
     return newBlog.save();
   }
 
-  // deleteTask(id: string): void {
-  //   this.blogs = this.blogs.filter((item) => item.id != id);
-  // }
+  async updateBlog(blogID, createBlogDTO: CreateBlogDTO): Promise<Blog> {
+    const updateBlog = await this.blogModel.findByIdAndUpdate(
+      blogID,
+      createBlogDTO,
+      { new: true },
+    );
+
+    return updateBlog;
+  }
+
+  async deleteBlog(blogID): Promise<any> {
+    const deleteBlog = await this.blogModel.findByIdAndRemove(blogID);
+    return deleteBlog;
+  }
 }
