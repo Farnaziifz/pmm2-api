@@ -30,7 +30,7 @@ export class BlogController {
 
     return res.status(HttpStatus.OK).json({
       statusCode: 200,
-      message: 'salam',
+      message: 'Blog added succefuly',
       blog,
     });
   }

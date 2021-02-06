@@ -1,13 +1,11 @@
 import { Injectable } from '@nestjs/common';
 import { Model } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
-// import { Blog } from './blog.model';
 import { Blog } from './blog.interface';
 import { CreateBlogDTO } from './dto/create-blog.dto';
 
 @Injectable()
 export class BlogService {
-  // private blogs: Blog[] = [];
   constructor(@InjectModel('Blog') private readonly blogModel: Model<Blog>) {}
 
   async getAllBlogs(): Promise<Blog[]> {
