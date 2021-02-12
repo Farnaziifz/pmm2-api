@@ -6,7 +6,7 @@ import { BlogTagModule } from './blog-tags/blog-tag.module';
 import { UserModule } from './user/user.module';
 import { SharedModule } from './shared/shared.module';
 import { AuthModule } from './auth/auth.module';
-import { TeamsModule } from './teams/teams.module';
+// import { TeamsModule } from './teams/teams.module';
 
 @Module({
   imports: [
@@ -19,7 +19,7 @@ import { TeamsModule } from './teams/teams.module';
     UserModule,
     SharedModule,
     AuthModule,
-    TeamsModule,
+    // TeamsModule,
   ],
 })
 export class AppModule {}
