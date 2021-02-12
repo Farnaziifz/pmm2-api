@@ -29,7 +29,7 @@ export class UserService {
     const { username, password } = userDTO;
     const user = await this.userModel.findOne({ username });
     if (!user) {
-      throw new HttpException(' User does not Exist', HttpStatus.UNAUTHORIZED);
+      throw new HttpException('User does not Exist', HttpStatus.UNAUTHORIZED);
     }
     if (await bcrypt.compare(password, user.password)) {
       return this.sanitizeUser(user);
@@ -39,6 +39,7 @@ export class UserService {
   }
 
   async findByPayload(payload: any) {
+    console.log(payload);
     const { username } = payload;
     return await this.userModel.findOne({ username });
   }

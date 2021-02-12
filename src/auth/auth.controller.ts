@@ -14,11 +14,13 @@ export class AuthController {
   @Get()
   @UseGuards(AuthGuard('jwt'))
   tempAuth() {
+    console.log('salalm');
     return { auth: 'works' };
   }
 
   @Post('login')
   async login(@Body() userDTO: LoginDTO) {
+    console.log('login');
     const user = await this.userService.findByLogin(userDTO);
     const payload = {
       username: user.username,

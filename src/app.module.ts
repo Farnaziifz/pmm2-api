@@ -8,8 +8,6 @@ import { SharedModule } from './shared/shared.module';
 import { AuthModule } from './auth/auth.module';
 import { TeamsModule } from './teams/teams.module';
 
-// 'mongodb://localhost/mokamel_db'
-
 @Module({
   imports: [
     BlogModule,
@@ -23,7 +21,5 @@ import { TeamsModule } from './teams/teams.module';
     AuthModule,
     TeamsModule,
   ],
-  // providers: [BlogTagsService],
-  // providers: [BlogCategoryService],
 })
 export class AppModule {}

@@ -9,7 +9,6 @@ import {
   HttpStatus,
   NotFoundException,
   Put,
-  Query,
 } from '@nestjs/common';
 import { BlogService } from './blog.service';
 import { CreateBlogDTO } from './dto/create-blog.dto';
@@ -58,7 +57,6 @@ export class BlogController {
 
   @Delete('/delete/:id')
   async deleteBlog(@Res() res, @Param('id') id) {
-    // const customer = await this.customerService.deleteCustomer(customerID);
     const blog = await this.blogService.deleteBlog(id);
     if (!blog) throw new NotFoundException('Blog does not exist');
     return res.status(HttpStatus.OK).json({
