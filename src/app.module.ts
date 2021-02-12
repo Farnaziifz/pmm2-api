@@ -3,15 +3,25 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { BlogModule } from './blog/blog.module';
 import { BlogCategoryModule } from './blog-category/blog-category.module';
 import { BlogTagModule } from './blog-tags/blog-tag.module';
+import { UserModule } from './user/user.module';
+import { SharedModule } from './shared/shared.module';
+import { AuthModule } from './auth/auth.module';
+import { TeamsModule } from './teams/teams.module';
+
+// 'mongodb://localhost/mokamel_db'
 
 @Module({
   imports: [
     BlogModule,
-    MongooseModule.forRoot('mongodb://localhost/mokamel_db', {
+    MongooseModule.forRoot(process.env.MONGO_URI, {
       useFindAndModify: false,
     }),
     BlogCategoryModule,
     BlogTagModule,
+    UserModule,
+    SharedModule,
+    AuthModule,
+    TeamsModule,
   ],
   // providers: [BlogTagsService],
   // providers: [BlogCategoryService],
