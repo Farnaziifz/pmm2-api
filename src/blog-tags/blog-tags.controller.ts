@@ -1,15 +1,12 @@
 import {
   Body,
   Controller,
-  Delete,
   Get,
   Param,
   Post,
   Res,
   HttpStatus,
   NotFoundException,
-  Put,
-  Query,
 } from '@nestjs/common';
 import { BlogTagsService } from './blog-tags.service';
 import { CreateBlogTagDTO } from './dto/create-blog-tag.dto';

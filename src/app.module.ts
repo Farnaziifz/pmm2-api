@@ -7,6 +7,7 @@ import { UserModule } from './user/user.module';
 import { SharedModule } from './shared/shared.module';
 import { AuthModule } from './auth/auth.module';
 // import { TeamsModule } from './teams/teams.module';
+import { ProductCategoryModule } from './product-category/product-category.module';
 
 @Module({
   imports: [
@@ -20,6 +21,7 @@ import { AuthModule } from './auth/auth.module';
     SharedModule,
     AuthModule,
     // TeamsModule,
+    ProductCategoryModule,
   ],
 })
 export class AppModule {}
