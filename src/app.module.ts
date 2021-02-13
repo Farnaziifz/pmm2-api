@@ -6,7 +6,6 @@ import { BlogTagModule } from './blog-tags/blog-tag.module';
 import { UserModule } from './user/user.module';
 import { SharedModule } from './shared/shared.module';
 import { AuthModule } from './auth/auth.module';
-// import { TeamsModule } from './teams/teams.module';
 import { ProductCategoryModule } from './product-category/product-category.module';
 
 @Module({
@@ -20,7 +19,6 @@ import { ProductCategoryModule } from './product-category/product-category.modul
     UserModule,
     SharedModule,
     AuthModule,
-    // TeamsModule,
     ProductCategoryModule,
   ],
 })
