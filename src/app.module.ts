@@ -10,6 +10,7 @@ import { ProductCategoryModule } from './product-category/product-category.modul
 import { BrandsModule } from './brands/brands.module';
 import { SliderModule } from './main/slider/slider.module';
 import { SpecModule } from './main/spec/spec.module';
+import { FormModule } from './contact/form/form.module';
 
 @Module({
   imports: [
@@ -26,6 +27,7 @@ import { SpecModule } from './main/spec/spec.module';
     BrandsModule,
     SliderModule,
     SpecModule,
+    FormModule,
   ],
 })
 export class AppModule {}
