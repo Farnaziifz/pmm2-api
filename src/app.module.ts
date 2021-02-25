@@ -8,6 +8,7 @@ import { SharedModule } from './shared/shared.module';
 import { AuthModule } from './auth/auth.module';
 import { ProductCategoryModule } from './product-category/product-category.module';
 import { BrandsModule } from './brands/brands.module';
+import { SliderModule } from './main/slider/slider.module';
 
 @Module({
   imports: [
@@ -22,6 +23,7 @@ import { BrandsModule } from './brands/brands.module';
     AuthModule,
     ProductCategoryModule,
     BrandsModule,
+    SliderModule,
   ],
 })
 export class AppModule {}
