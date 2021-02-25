@@ -1,15 +1,12 @@
 import {
   Body,
   Controller,
-  Delete,
   Get,
   Param,
   Post,
   Res,
   HttpStatus,
   NotFoundException,
-  Put,
-  Query,
 } from '@nestjs/common';
 
 import { BlogCategoryService } from './blog-category.service';

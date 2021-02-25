@@ -1,13 +1,4 @@
-import {
-  Body,
-  Controller,
-  Get,
-  Param,
-  Post,
-  Res,
-  HttpStatus,
-  NotFoundException,
-} from '@nestjs/common';
+import { Body, Controller, Get, Post, Res, HttpStatus } from '@nestjs/common';
 import { ProductCategoryService } from './product-category.service';
 import { CreateProductCategoryDTO } from './dto/create-product-category';
 
