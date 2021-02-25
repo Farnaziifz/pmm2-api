@@ -1,13 +1,4 @@
-import {
-  Body,
-  Controller,
-  Get,
-  Param,
-  Post,
-  Res,
-  HttpStatus,
-  NotFoundException,
-} from '@nestjs/common';
+import { Body, Controller, Get, Post, Res, HttpStatus } from '@nestjs/common';
 import { SliderService } from './slider.service';
 import { CreateSliderDTO } from '../dto/create-slider.dto';
 

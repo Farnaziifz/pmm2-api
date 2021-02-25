@@ -9,6 +9,7 @@ import { AuthModule } from './auth/auth.module';
 import { ProductCategoryModule } from './product-category/product-category.module';
 import { BrandsModule } from './brands/brands.module';
 import { SliderModule } from './main/slider/slider.module';
+import { SpecModule } from './main/spec/spec.module';
 
 @Module({
   imports: [
@@ -24,6 +25,7 @@ import { SliderModule } from './main/slider/slider.module';
     ProductCategoryModule,
     BrandsModule,
     SliderModule,
+    SpecModule,
   ],
 })
 export class AppModule {}
