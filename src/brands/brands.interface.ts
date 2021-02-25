@@ -6,6 +6,6 @@ export interface Brands extends Document {
   readonly image: string;
   readonly synopsis: string;
   readonly qoute: string;
-  readonly madeBy: string;
   readonly score: string;
+  readonly madeBy: string;
 }
