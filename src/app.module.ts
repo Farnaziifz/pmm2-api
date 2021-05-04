@@ -12,6 +12,8 @@ import { SpecModule } from './main/spec/spec.module';
 import { FormModule } from './contact/form/form.module';
 import { InfoModule } from './contact/info/info.module';
 import { ProductModule } from './product/product.module';
+import { BlogModule } from './blog/blog.module';
+import { BlogCommentModule } from './blog-comment/blog-comment.module';
 
 @Module({
   imports: [
@@ -30,6 +32,8 @@ import { ProductModule } from './product/product.module';
     FormModule,
     InfoModule,
     ProductModule,
+    BlogModule,
+    BlogCommentModule,
   ],
 })
 export class AppModule {}
