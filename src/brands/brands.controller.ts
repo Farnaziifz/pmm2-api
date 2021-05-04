@@ -7,9 +7,11 @@ import {
   Res,
   HttpStatus,
   NotFoundException,
+  UseGuards,
 } from '@nestjs/common';
 import { BrandsService } from './brands.service';
 import { CreateBrandDTO } from './dto/create-brand.dto';
+import { AuthGuard } from '@nestjs/passport';
 
 @Controller('brands')
 export class BrandsController {
@@ -22,6 +24,7 @@ export class BrandsController {
   }
 
   @Post('create')
+  @UseGuards(AuthGuard('jwt'))
   async createBrand(@Res() res, @Body() createBrandDTO: CreateBrandDTO) {
     const brand = await this.brandsService.createBrands(createBrandDTO);
     return res.status(HttpStatus.OK).json({
