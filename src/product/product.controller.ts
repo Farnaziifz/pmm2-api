@@ -18,7 +18,7 @@ export class ProductController {
   @Get()
   async getAllProduct(@Res() res) {
     const data = await this.productService.getAllProduct();
-    return res.status(HttpStatus.OK).json(data);
+    return res.status(HttpStatus.OK).json({ data, statusCode: 200 });
   }
 
   @Post('create')
@@ -33,8 +33,8 @@ export class ProductController {
 
   @Get('/:id')
   async getProduct(@Res() res, @Param('id') id) {
-    const product = await this.productService.getProductById(id);
-    if (!product) throw new NotFoundException('product does not exist!');
-    return res.status(HttpStatus.OK).json(product);
+    const data = await this.productService.getProductById(id);
+    if (!data) throw new NotFoundException('product does not exist!');
+    return res.status(HttpStatus.OK).json({ data, statusCode: 200 });
   }
 }

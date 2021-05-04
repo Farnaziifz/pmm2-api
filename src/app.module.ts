@@ -17,6 +17,7 @@ import { BlogCommentModule } from './blog-comment/blog-comment.module';
 import { MulterModule } from '@nestjs/platform-express';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { CertsModule } from './certs/certs.module';
 
 @Module({
   imports: [
@@ -40,6 +41,7 @@ import { AppService } from './app.service';
     ProductModule,
     BlogModule,
     BlogCommentModule,
+    CertsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
