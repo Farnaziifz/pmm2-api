@@ -14,11 +14,17 @@ import { InfoModule } from './contact/info/info.module';
 import { ProductModule } from './product/product.module';
 import { BlogModule } from './blog/blog.module';
 import { BlogCommentModule } from './blog-comment/blog-comment.module';
+import { MulterModule } from '@nestjs/platform-express';
+import { AppController } from './app.controller';
+import { AppService } from './app.service';
 
 @Module({
   imports: [
     MongooseModule.forRoot(process.env.MONGO_URI, {
       useFindAndModify: false,
+    }),
+    MulterModule.register({
+      dest: './uploads',
     }),
     BlogCategoryModule,
     BlogTagModule,
@@ -35,5 +41,7 @@ import { BlogCommentModule } from './blog-comment/blog-comment.module';
     BlogModule,
     BlogCommentModule,
   ],
+  controllers: [AppController],
+  providers: [AppService],
 })
 export class AppModule {}
