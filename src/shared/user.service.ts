@@ -13,6 +13,11 @@ export class UserService {
     return user.depopulate('password');
   }
 
+  async getAllUser(): Promise<User[]> {
+    const data = await this.userModel.find().exec();
+    return data;
+  }
+
   async create(userDTO: RegisterDTO) {
     const { username } = userDTO;
     const user = await this.userModel.findOne({ username });
@@ -20,9 +25,9 @@ export class UserService {
       throw new HttpException('User already Exist', HttpStatus.BAD_REQUEST);
     }
 
-    const creatUser = new this.userModel(userDTO);
-    await creatUser.save();
-    return this.sanitizeUser(creatUser);
+    const createdUser = new this.userModel(userDTO);
+    await createdUser.save();
+    return this.sanitizeUser(createdUser);
   }
 
   async findByLogin(userDTO: LoginDTO) {
@@ -39,7 +44,6 @@ export class UserService {
   }
 
   async findByPayload(payload: any) {
-    console.log(payload);
     const { username } = payload;
     return await this.userModel.findOne({ username });
   }

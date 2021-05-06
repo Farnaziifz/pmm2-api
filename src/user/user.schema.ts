@@ -4,7 +4,10 @@ import * as bcrypt from 'bcrypt';
 export const UserSchema = new mongoose.Schema({
   username: String,
   password: String,
-  address: Array,
+  address: {
+    add1: String,
+    zipcode: String,
+  },
   created: {
     type: Date,
     default: Date.now,
@@ -20,6 +23,6 @@ UserSchema.pre('save', async function (next: mongoose.HookNextFunction) {
     this['password'] = hashed;
     return next();
   } catch (err) {
-    return err;
+    return next(err);
   }
 });

@@ -7,9 +7,11 @@ import {
   Res,
   HttpStatus,
   NotFoundException,
+  UseGuards,
 } from '@nestjs/common';
 import { BlogTagsService } from './blog-tags.service';
 import { CreateBlogTagDTO } from './dto/create-blog-tag.dto';
+import { AuthGuard } from '@nestjs/passport';
 
 @Controller('blog-tags')
 export class BlogTagsController {
@@ -22,6 +24,7 @@ export class BlogTagsController {
   }
 
   @Post('create')
+  @UseGuards(AuthGuard('jwt'))
   async createBlogCats(@Res() res, @Body() createBlogTagDTO: CreateBlogTagDTO) {
     const blog = await this.blogTagsService.createBlogTag(createBlogTagDTO);
 

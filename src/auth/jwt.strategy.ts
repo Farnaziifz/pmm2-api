@@ -8,12 +8,11 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
   constructor(private authService: AuthService) {
     super({
       jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
-      secretOrKey: 'secret-key',
+      secretOrKey: 'secretKey',
     });
   }
 
   async validate(payload: any, done: VerifiedCallback) {
-    console.log(payload);
     const user = await this.authService.validateUser(payload);
     if (!user) {
       return done(

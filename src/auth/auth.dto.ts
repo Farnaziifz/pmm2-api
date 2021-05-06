@@ -5,5 +5,5 @@ export interface LoginDTO {
 
 export interface RegisterDTO {
   username: string;
-  passwprd: string;
+  password: string;
 }
