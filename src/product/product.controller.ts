@@ -24,6 +24,13 @@ export class ProductController {
     return res.status(HttpStatus.OK).json({ data, statusCode: 200 });
   }
 
+  @Get('/:id')
+  async getProduct(@Res() res, @Param('id') id) {
+    const data = await this.productService.getProductById(id);
+    if (!data) throw new NotFoundException('product does not exist!');
+    return res.status(HttpStatus.OK).json({ data, statusCode: 200 });
+  }
+
   @Post('create')
   async createProduct(@Res() res, @Body() createProductDTO: CreateProductDTO) {
     const data = await this.productService.createProducts(createProductDTO);
@@ -32,13 +39,6 @@ export class ProductController {
       message: 'product added succefuly',
       data,
     });
-  }
-
-  @Get('/:id')
-  async getProduct(@Res() res, @Param('id') id) {
-    const data = await this.productService.getProductById(id);
-    if (!data) throw new NotFoundException('product does not exist!');
-    return res.status(HttpStatus.OK).json({ data, statusCode: 200 });
   }
 
   @Delete('/delete/:id')
