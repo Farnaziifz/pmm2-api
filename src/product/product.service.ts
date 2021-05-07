@@ -25,4 +25,9 @@ export class ProductService {
     const data = await this.ProductsModel.findById(id).exec();
     return data;
   }
+
+  async deleteProduct(id): Promise<any> {
+    const product = await this.ProductsModel.findByIdAndRemove(id);
+    return product;
+  }
 }

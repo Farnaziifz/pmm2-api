@@ -7,9 +7,12 @@ import {
   Res,
   HttpStatus,
   NotFoundException,
+  UseGuards,
+  Delete,
 } from '@nestjs/common';
 import { ProductService } from './product.service';
 import { CreateProductDTO } from './dto/create-product.dto';
+import { AuthGuard } from '@nestjs/passport';
 
 @Controller('product')
 export class ProductController {
@@ -36,5 +39,17 @@ export class ProductController {
     const data = await this.productService.getProductById(id);
     if (!data) throw new NotFoundException('product does not exist!');
     return res.status(HttpStatus.OK).json({ data, statusCode: 200 });
+  }
+
+  @Delete('/delete/:id')
+  @UseGuards(AuthGuard('jwt'))
+  async deleteCat(@Res() res, @Param('id') id) {
+    const product = await this.productService.deleteProduct(id);
+    if (!product) throw new NotFoundException('product does not exist');
+    return res.status(HttpStatus.OK).json({
+      statusCode: 200,
+      message: 'product has been deleted',
+      product,
+    });
   }
 }

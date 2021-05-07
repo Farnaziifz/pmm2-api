@@ -24,7 +24,7 @@ export class AuthController {
       username: user.username,
     };
     const token = await this.authService.signPayload(payload);
-    return { user, token };
+    return { user, token, statusCode: 200 };
   }
 
   @Post('register')

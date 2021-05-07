@@ -18,6 +18,11 @@ export class UserService {
     return data;
   }
 
+  async deleteUser(id): Promise<any> {
+    const user = await this.userModel.findByIdAndRemove(id);
+    return user;
+  }
+
   async create(userDTO: RegisterDTO) {
     const { username } = userDTO;
     const user = await this.userModel.findOne({ username });

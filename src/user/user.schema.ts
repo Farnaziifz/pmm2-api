@@ -4,10 +4,10 @@ import * as bcrypt from 'bcrypt';
 export const UserSchema = new mongoose.Schema({
   username: String,
   password: String,
-  address: {
-    add1: String,
-    zipcode: String,
-  },
+  f_name: String,
+  l_name: String,
+  address: String,
+  zipcode: String,
   created: {
     type: Date,
     default: Date.now,
