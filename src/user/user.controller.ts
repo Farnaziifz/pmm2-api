@@ -5,6 +5,7 @@ import { UserService } from '../shared/user.service';
 export class UserController {
   constructor(private userService: UserService) {}
 
+
   @Get()
   async getAllUsers(@Res() res) {
     const data = await this.userService.getAllUser();
