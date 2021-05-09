@@ -20,8 +20,14 @@ export class BrandsService {
     const newBrands = await new this.BrandsModel(createBrandDTO);
     return newBrands.save();
   }
+
   async getBrandById(id): Promise<Brands> {
     const brand = await this.BrandsModel.findById(id).exec();
     return brand;
+  }
+
+  async deleteBrand(id): Promise<any> {
+    const data = await this.BrandsModel.findByIdAndRemove(id);
+    return data;
   }
 }
