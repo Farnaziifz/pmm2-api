@@ -19,4 +19,9 @@ export class SliderService {
     const newSlider = await new this.SliderModel(createSliderDTO);
     return newSlider.save();
   }
+
+  async deleteSlider(id): Promise<any> {
+    const data = await this.SliderModel.findByIdAndRemove(id);
+    return data;
+  }
 }
