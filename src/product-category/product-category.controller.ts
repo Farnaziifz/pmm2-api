@@ -1,6 +1,18 @@
-import { Body, Controller, Get, Post, Res, HttpStatus } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Post,
+  Res,
+  HttpStatus,
+  NotFoundException,
+  UseGuards,
+  Delete,
+  Param,
+} from '@nestjs/common';
 import { ProductCategoryService } from './product-category.service';
 import { CreateProductCategoryDTO } from './dto/create-product-category';
+import { AuthGuard } from '@nestjs/passport';
 
 @Controller('product-category')
 export class ProductCategoryController {
@@ -9,7 +21,7 @@ export class ProductCategoryController {
   @Get()
   async getAllProductCategory(@Res() res) {
     const productCategory = await this.productCategoryService.getAllProductCategory();
-    return res.status(HttpStatus.OK).json(productCategory);
+    return res.status(HttpStatus.OK).json({ productCategory, statusCode: 200 });
   }
 
   @Post('create')
@@ -25,6 +37,18 @@ export class ProductCategoryController {
       statusCode: 200,
       message: 'product Category tag added succefuly',
       productCategory,
+    });
+  }
+
+  @Delete('/delete/:id')
+  @UseGuards(AuthGuard('jwt'))
+  async deleteCat(@Res() res, @Param('id') id) {
+    const data = await this.productCategoryService.deleteProduct(id);
+    if (!data) throw new NotFoundException('data does not exist');
+    return res.status(HttpStatus.OK).json({
+      statusCode: 200,
+      message: 'data has been deleted',
+      data,
     });
   }
 }

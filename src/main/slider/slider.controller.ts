@@ -1,4 +1,13 @@
-import { Body, Controller, Get, Post, Res, HttpStatus } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Post,
+  Res,
+  HttpStatus,
+  Param,
+  Delete,
+} from '@nestjs/common';
 import { SliderService } from './slider.service';
 import { CreateSliderDTO } from '../dto/create-slider.dto';
 
@@ -9,7 +18,7 @@ export class SliderController {
   @Get()
   async getAllSliders(@Res() res) {
     const sliders = await this.sliderService.getAllSlider();
-    return res.status(HttpStatus.OK).json(sliders);
+    return res.status(HttpStatus.OK).json({ sliders, statusCode: 200 });
   }
 
   @Post('create')
@@ -19,6 +28,16 @@ export class SliderController {
       statusCode: 200,
       message: 'slider added succefuly',
       slider,
+    });
+  }
+
+  @Delete('/delete/:id')
+  async deleteSlider(@Res() res, @Param('id') id) {
+    const data = await this.sliderService.deleteSlider(id);
+    return res.status(HttpStatus.OK).json({
+      statusCode: 200,
+      message: 'slider delete succefuly',
+      data,
     });
   }
 }

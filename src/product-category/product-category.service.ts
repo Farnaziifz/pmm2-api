@@ -24,4 +24,9 @@ export class ProductCategoryService {
     );
     return newProductCategory.save();
   }
+
+  async deleteProduct(id): Promise<any> {
+    const data = await this.ProductCategoryModel.findByIdAndRemove(id);
+    return data;
+  }
 }
