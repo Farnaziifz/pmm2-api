@@ -7,10 +7,13 @@ import {
   Res,
   HttpStatus,
   NotFoundException,
+  UseGuards,
+  Delete,
 } from '@nestjs/common';
 
 import { BlogCategoryService } from './blog-category.service';
 import { CreateBlogCategoryDTO } from './dto/create-blog-category.dto';
+import { AuthGuard } from '@nestjs/passport';
 
 @Controller('blog-category')
 export class BlogCategoryController {
@@ -23,6 +26,7 @@ export class BlogCategoryController {
   }
 
   @Post('create')
+  @UseGuards(AuthGuard('jwt'))
   async createBlogCats(
     @Res() res,
     @Body() createBlogCategoryDTO: CreateBlogCategoryDTO,
@@ -43,5 +47,17 @@ export class BlogCategoryController {
     const blog = await this.blogCategoryService.getBlogCatById(id);
     if (!blog) throw new NotFoundException('Blog does not exist!');
     return res.status(HttpStatus.OK).json(blog);
+  }
+
+  @Delete('/delete/:id')
+  @UseGuards(AuthGuard('jwt'))
+  async deleteCat(@Res() res, @Param('id') id) {
+    const data = await this.blogCategoryService.deleteCategory(id);
+    if (!data) throw new NotFoundException('data does not exist');
+    return res.status(HttpStatus.OK).json({
+      statusCode: 200,
+      message: 'data has been deleted',
+      data,
+    });
   }
 }

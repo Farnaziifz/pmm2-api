@@ -27,4 +27,9 @@ export class BlogCategoryService {
     const blog = await this.BlogCatModel.findById(id).exec();
     return blog;
   }
+
+  async deleteCategory(id): Promise<any> {
+    const data = await this.BlogCatModel.findByIdAndRemove(id);
+    return data;
+  }
 }
