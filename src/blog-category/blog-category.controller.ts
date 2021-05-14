@@ -18,8 +18,8 @@ export class BlogCategoryController {
 
   @Get()
   async getAllBlogCats(@Res() res) {
-    const blogs = await this.blogCategoryService.getAllBlogCats();
-    return res.status(HttpStatus.OK).json(blogs);
+    const data = await this.blogCategoryService.getAllBlogCats();
+    return res.status(HttpStatus.OK).json({ data, statusCode: 200 });
   }
 
   @Post('create')
