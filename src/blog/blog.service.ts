@@ -24,4 +24,14 @@ export class BlogService {
     const data = await this.BlogsModel.findById(id).exec();
     return data;
   }
+
+  async getBlogByCat(id): Promise<Blogs[]> {
+    const data = await this.BlogsModel.find({ category_id: id });
+    return data;
+  }
+
+  async deleteBlog(id): Promise<any> {
+    const data = await this.BlogsModel.findByIdAndRemove(id);
+    return data;
+  }
 }

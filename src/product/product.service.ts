@@ -16,6 +16,27 @@ export class ProductService {
     return data;
   }
 
+  async getProductByCat(id): Promise<Products[]> {
+    const productCatId = await this.ProductsModel.find({ category_id: id });
+    return productCatId;
+  }
+
+  async getProductByBrand(id): Promise<Products[]> {
+    const productCatId = await this.ProductsModel.find({ brand_id: id });
+    return productCatId;
+  }
+
+  async getProductSearch(name): Promise<Products[]> {
+    const temp = await this.ProductsModel.find().exec();
+    const product = [];
+    temp.forEach((element) => {
+      if (element.name.includes(name)) {
+        product.push(element);
+      }
+    });
+    return product;
+  }
+
   async createProducts(createProductDTO: CreateProductDTO): Promise<Products> {
     const newProduct = await new this.ProductsModel(createProductDTO);
     return newProduct.save();
@@ -29,5 +50,18 @@ export class ProductService {
   async deleteProduct(id): Promise<any> {
     const product = await this.ProductsModel.findByIdAndRemove(id);
     return product;
+  }
+
+  async updateProduct(
+    id,
+    createProductDTO: CreateProductDTO,
+  ): Promise<Products> {
+    const data = await this.ProductsModel.findByIdAndUpdate(
+      id,
+      createProductDTO,
+      { new: true },
+    );
+
+    return data;
   }
 }
