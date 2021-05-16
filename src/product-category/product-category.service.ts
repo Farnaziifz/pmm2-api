@@ -16,6 +16,11 @@ export class ProductCategoryService {
     return productCategory;
   }
 
+  async getCat(id): Promise<ProductCategory> {
+    const data = await this.ProductCategoryModel.findById(id).exec();
+    return data;
+  }
+
   async CreateProductCategory(
     createProductCategoryDTO: CreateProductCategoryDTO,
   ): Promise<ProductCategory> {

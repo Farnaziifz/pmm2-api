@@ -24,6 +24,13 @@ export class ProductCategoryController {
     return res.status(HttpStatus.OK).json({ productCategory, statusCode: 200 });
   }
 
+  @Get('/:id')
+  async getCat(@Res() res, @Param('id') id) {
+    const data = await this.productCategoryService.getCat(id);
+    if (!data) throw new NotFoundException('data does not exist!');
+    return res.status(HttpStatus.OK).json({ data, statusCode: 200 });
+  }
+
   @Post('create')
   async createProductCategory(
     @Res() res,
