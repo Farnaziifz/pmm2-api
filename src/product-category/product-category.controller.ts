@@ -9,6 +9,7 @@ import {
   UseGuards,
   Delete,
   Param,
+  Put,
 } from '@nestjs/common';
 import { ProductCategoryService } from './product-category.service';
 import { CreateProductCategoryDTO } from './dto/create-product-category';
@@ -55,6 +56,24 @@ export class ProductCategoryController {
     return res.status(HttpStatus.OK).json({
       statusCode: 200,
       message: 'data has been deleted',
+      data,
+    });
+  }
+
+  @Put('/update/:id')
+  async updateProduct(
+    @Res() res,
+    @Param('id') id,
+    @Body() createProductCategoryDTO: CreateProductCategoryDTO,
+  ) {
+    const data = await this.productCategoryService.updateCat(
+      id,
+      createProductCategoryDTO,
+    );
+    if (!data) throw new NotFoundException('data does not exist!');
+    return res.status(HttpStatus.OK).json({
+      statusCode: 200,
+      message: 'data has been successfully updated',
       data,
     });
   }

@@ -34,4 +34,17 @@ export class ProductCategoryService {
     const data = await this.ProductCategoryModel.findByIdAndRemove(id);
     return data;
   }
+
+  async updateCat(
+    id,
+    createProductCategoryDTO: CreateProductCategoryDTO,
+  ): Promise<ProductCategory> {
+    const data = await this.ProductCategoryModel.findByIdAndUpdate(
+      id,
+      createProductCategoryDTO,
+      { new: true },
+    );
+
+    return data;
+  }
 }
