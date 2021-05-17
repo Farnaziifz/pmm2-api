@@ -9,6 +9,7 @@ import {
   NotFoundException,
   UseGuards,
   Delete,
+  Put,
 } from '@nestjs/common';
 import { BrandsService } from './brands.service';
 import { CreateBrandDTO } from './dto/create-brand.dto';
@@ -50,6 +51,21 @@ export class BrandsController {
     return res.status(HttpStatus.OK).json({
       statusCode: 200,
       message: 'data has been deleted',
+      data,
+    });
+  }
+
+  @Put('/update/:id')
+  async updateProduct(
+    @Res() res,
+    @Param('id') id,
+    @Body() createBrandDTO: CreateBrandDTO,
+  ) {
+    const data = await this.brandsService.updateBrand(id, createBrandDTO);
+    if (!data) throw new NotFoundException('data does not exist!');
+    return res.status(HttpStatus.OK).json({
+      statusCode: 200,
+      message: 'data has been successfully updated',
       data,
     });
   }

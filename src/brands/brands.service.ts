@@ -30,4 +30,12 @@ export class BrandsService {
     const data = await this.BrandsModel.findByIdAndRemove(id);
     return data;
   }
+
+  async updateBrand(id, createBrandDTO: CreateBrandDTO): Promise<Brands> {
+    const data = await this.BrandsModel.findByIdAndUpdate(id, createBrandDTO, {
+      new: true,
+    });
+
+    return data;
+  }
 }
