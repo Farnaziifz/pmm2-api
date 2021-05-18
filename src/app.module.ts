@@ -18,6 +18,8 @@ import { MulterModule } from '@nestjs/platform-express';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { CertsModule } from './certs/certs.module';
+import { ProductCommentModule } from './product-comment/product-comment.module';
+import { ServicesModule } from './services/services.module';
 
 @Module({
   imports: [
@@ -42,6 +44,8 @@ import { CertsModule } from './certs/certs.module';
     BlogModule,
     BlogCommentModule,
     CertsModule,
+    ProductCommentModule,
+    ServicesModule,
   ],
   controllers: [AppController],
   providers: [AppService],

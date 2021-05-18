@@ -11,30 +11,34 @@ import {
   Delete,
   Put,
 } from '@nestjs/common';
-import { BlogService } from './blog.service';
-import { CreateBlogDTO } from './dto/create-blog.dto';
 import { AuthGuard } from '@nestjs/passport';
+import { ServicesService } from './services.service';
+import { CreateServicesDTO } from './dto/create-services.dto';
 
-@Controller('blog')
-export class BlogController {
-  constructor(private blogService: BlogService) {}
+@Controller('services')
+export class ServicesController {
+  constructor(private servicesService: ServicesService) {}
 
   @Get()
-  async getAllBlog(@Res() res) {
-    const data = await this.blogService.getAllBlog();
+  async getAllServices(@Res() res) {
+    const data = await this.servicesService.getAllServices();
     return res.status(HttpStatus.OK).json({ data, statusCode: 200 });
   }
 
-  @Get('byCat/:id')
-  async getBlogByCat(@Res() res, @Param('id') id) {
-    const data = await this.blogService.getBlogByCat(id);
-    return res.statsu(HttpStatus.OK).json({ data, statusCode: 200 });
+  @Get('/:id')
+  async getService(@Res() res, @Param('id') id) {
+    const data = await this.servicesService.getServicesById(id);
+    if (!data) throw new NotFoundException('data does not exist!');
+    return res.status(HttpStatus.OK).json({ data, statusCode: 200 });
   }
 
-  @Post()
+  @Post('create')
   @UseGuards(AuthGuard('jwt'))
-  async createProduct(@Res() res, @Body() createBlogDTO: CreateBlogDTO) {
-    const data = await this.blogService.createBlog(createBlogDTO);
+  async createProduct(
+    @Res() res,
+    @Body() createServicesDTO: CreateServicesDTO,
+  ) {
+    const data = await this.servicesService.createProducts(createServicesDTO);
     return res.status(HttpStatus.OK).json({
       statusCode: 200,
       message: 'data added succefuly',
@@ -45,7 +49,7 @@ export class BlogController {
   @Delete('/delete/:id')
   @UseGuards(AuthGuard('jwt'))
   async deleteCat(@Res() res, @Param('id') id) {
-    const data = await this.blogService.deleteBlog(id);
+    const data = await this.servicesService.deleteServices(id);
     if (!data) throw new NotFoundException('data does not exist');
     return res.status(HttpStatus.OK).json({
       statusCode: 200,
@@ -55,12 +59,15 @@ export class BlogController {
   }
 
   @Put('/update/:id')
-  async updateBlog(
+  async updateProduct(
     @Res() res,
     @Param('id') id,
-    @Body() createBlogDTO: CreateBlogDTO,
+    @Body() createServicesDTO: CreateServicesDTO,
   ) {
-    const data = await this.blogService.updateBlog(id, createBlogDTO);
+    const data = await this.servicesService.updateProduct(
+      id,
+      createServicesDTO,
+    );
     if (!data) throw new NotFoundException('data does not exist!');
     return res.status(HttpStatus.OK).json({
       statusCode: 200,

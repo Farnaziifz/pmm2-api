@@ -34,4 +34,12 @@ export class BlogService {
     const data = await this.BlogsModel.findByIdAndRemove(id);
     return data;
   }
+
+  async updateBlog(id, createBlogDTO: CreateBlogDTO): Promise<Blogs> {
+    const data = await this.BlogsModel.findByIdAndUpdate(id, createBlogDTO, {
+      new: true,
+    });
+
+    return data;
+  }
 }
