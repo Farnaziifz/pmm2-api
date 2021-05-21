@@ -21,6 +21,8 @@ import { CertsModule } from './certs/certs.module';
 import { ProductCommentModule } from './product-comment/product-comment.module';
 import { ServicesModule } from './services/services.module';
 import { TeamsModule } from './teams/teams.module';
+import { PartnersModule } from './partners/partners.module';
+import { FaqModule } from './faq/faq.module';
 
 @Module({
   imports: [
@@ -48,6 +50,8 @@ import { TeamsModule } from './teams/teams.module';
     ProductCommentModule,
     ServicesModule,
     TeamsModule,
+    PartnersModule,
+    FaqModule,
   ],
   controllers: [AppController],
   providers: [AppService],
