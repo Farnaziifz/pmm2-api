@@ -7,9 +7,14 @@ import {
   Res,
   HttpStatus,
   NotFoundException,
+  UseGuards,
+  Delete,
+  Put,
 } from '@nestjs/common';
 import { CertsService } from './certs.service';
 import { CreateCertsDTO } from './dto/create-certs.dto';
+import { AuthGuard } from '@nestjs/passport';
+
 @Controller('certs')
 export class CertsController {
   constructor(private certsService: CertsService) {}
@@ -35,5 +40,32 @@ export class CertsController {
     const data = await this.certsService.getCertById(id);
     if (!data) throw new NotFoundException('data does not exist!');
     return res.status(HttpStatus.OK).json({ data, statusCode: 200 });
+  }
+
+  @Delete('/delete/:id')
+  @UseGuards(AuthGuard('jwt'))
+  async deleteCat(@Res() res, @Param('id') id) {
+    const data = await this.certsService.deleteCerts(id);
+    if (!data) throw new NotFoundException('data does not exist');
+    return res.status(HttpStatus.OK).json({
+      statusCode: 200,
+      message: 'data has been deleted',
+      data,
+    });
+  }
+
+  @Put('/update/:id')
+  async updateProduct(
+    @Res() res,
+    @Param('id') id,
+    @Body() createCertsDTO: CreateCertsDTO,
+  ) {
+    const data = await this.certsService.updateCerts(id, createCertsDTO);
+    if (!data) throw new NotFoundException('data does not exist!');
+    return res.status(HttpStatus.OK).json({
+      statusCode: 200,
+      message: 'data has been successfully updated',
+      data,
+    });
   }
 }

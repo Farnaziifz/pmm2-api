@@ -15,4 +15,5 @@ export const ProductsSchema = new mongoose.Schema({
   discount: Number,
   details: Array,
   description: String,
+  subtext: String,
 });

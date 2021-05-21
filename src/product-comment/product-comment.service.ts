@@ -29,4 +29,9 @@ export class ProductCommentService {
     const data = await this.ProductCommentModel.findById(id).exec();
     return data;
   }
+
+  async getCommentByPID(id): Promise<ProductComment> {
+    const data = await this.ProductCommentModel.find({ product_id: id });
+    return data;
+  }
 }

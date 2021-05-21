@@ -42,4 +42,11 @@ export class BlogCommentController {
     if (!data) throw new NotFoundException('comment does not exist!');
     return res.status(HttpStatus.OK).json({ data, statusCode: 200 });
   }
+
+  @Get('/byBlog/:id')
+  async getProductCmByProduct(@Res() res, @Param('id') id) {
+    const data = await this.blogCommentService.getCommentByBID(id);
+    if (!data) throw new NotFoundException('no product');
+    return res.status(HttpStatus.OK).json({ statusCode: 200, data });
+  }
 }

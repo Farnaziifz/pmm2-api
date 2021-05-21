@@ -9,6 +9,7 @@ import {
   NotFoundException,
   UseGuards,
   Delete,
+  Put,
 } from '@nestjs/common';
 
 import { BlogCategoryService } from './blog-category.service';
@@ -57,6 +58,24 @@ export class BlogCategoryController {
     return res.status(HttpStatus.OK).json({
       statusCode: 200,
       message: 'data has been deleted',
+      data,
+    });
+  }
+
+  @Put('/update/:id')
+  async updateProduct(
+    @Res() res,
+    @Param('id') id,
+    @Body() createBlogCategoryDTO: CreateBlogCategoryDTO,
+  ) {
+    const data = await this.blogCategoryService.updateProduct(
+      id,
+      createBlogCategoryDTO,
+    );
+    if (!data) throw new NotFoundException('data does not exist!');
+    return res.status(HttpStatus.OK).json({
+      statusCode: 200,
+      message: 'data has been successfully updated',
       data,
     });
   }

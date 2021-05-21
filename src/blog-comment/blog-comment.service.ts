@@ -27,4 +27,9 @@ export class BlogCommentService {
     const data = await this.BlogCommentModel.findById(id).exec();
     return data;
   }
+
+  async getCommentByBID(id): Promise<BlogComment> {
+    const data = await this.BlogCommentModel.find({ blog_id: id });
+    return data;
+  }
 }

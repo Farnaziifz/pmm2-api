@@ -20,6 +20,7 @@ import { AppService } from './app.service';
 import { CertsModule } from './certs/certs.module';
 import { ProductCommentModule } from './product-comment/product-comment.module';
 import { ServicesModule } from './services/services.module';
+import { TeamsModule } from './teams/teams.module';
 
 @Module({
   imports: [
@@ -46,6 +47,7 @@ import { ServicesModule } from './services/services.module';
     CertsModule,
     ProductCommentModule,
     ServicesModule,
+    TeamsModule,
   ],
   controllers: [AppController],
   providers: [AppService],

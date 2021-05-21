@@ -25,4 +25,17 @@ export class CertsService {
     const data = await this.CertsModel.findById(id).exec();
     return data;
   }
+
+  async deleteCerts(id): Promise<any> {
+    const data = await this.CertsModel.findByIdAndRemove(id);
+    return data;
+  }
+
+  async updateCerts(id, createCertsDTO: CreateCertsDTO): Promise<Certs> {
+    const data = await this.CertsModel.findByIdAndUpdate(id, createCertsDTO, {
+      new: true,
+    });
+
+    return data;
+  }
 }

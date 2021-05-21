@@ -15,4 +15,5 @@ export interface Products extends Document {
   readonly discount: number;
   readonly details: string[];
   readonly description: string;
+  readonly subtext: string;
 }

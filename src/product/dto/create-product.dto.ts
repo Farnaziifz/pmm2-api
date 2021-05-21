@@ -13,4 +13,5 @@ export class CreateProductDTO {
   readonly discount: number;
   readonly details: string[];
   readonly description: string;
+  readonly subtext: string;
 }

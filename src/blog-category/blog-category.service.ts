@@ -32,4 +32,17 @@ export class BlogCategoryService {
     const data = await this.BlogCatModel.findByIdAndRemove(id);
     return data;
   }
+
+  async updateProduct(
+    id,
+    createBlogCategoryDTO: CreateBlogCategoryDTO,
+  ): Promise<BlogCategory> {
+    const data = await this.BlogCatModel.findByIdAndUpdate(
+      id,
+      createBlogCategoryDTO,
+      { new: true },
+    );
+
+    return data;
+  }
 }
