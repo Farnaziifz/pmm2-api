@@ -1,4 +1,5 @@
 export class CreateProductDTO {
+  
   readonly name: string;
   readonly ename: string;
   readonly image: string;
