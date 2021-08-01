@@ -1,5 +1,6 @@
 export class CreateProductDTO {
   readonly name: string;
+  readonly ename: string;
   readonly image: string;
   readonly category_name: string;
   readonly category_id: string;

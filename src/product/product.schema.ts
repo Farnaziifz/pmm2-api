@@ -2,6 +2,7 @@ import * as mongoose from 'mongoose';
 
 export const ProductsSchema = new mongoose.Schema({
   name: String,
+  ename: String,
   image: String,
   category_name: String,
   category_id: String,
