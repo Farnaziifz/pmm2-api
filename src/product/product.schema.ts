@@ -10,7 +10,7 @@ export const ProductsSchema = new mongoose.Schema({
   category_id: String,
   brand_id: String,
   brand_name: String,
-  uniqueId: Number,
+  uniqueId: String,
   mount: String,
   type: String,
   price: Number,

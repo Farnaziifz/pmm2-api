@@ -10,7 +10,7 @@ export interface Products extends Document {
   readonly category_id: string;
   readonly brand_id: string;
   readonly brand_name: string;
-  readonly uniqueId: number;
+  readonly uniqueId: string;
   readonly mount: string;
   readonly type: string;
   readonly price: number;
