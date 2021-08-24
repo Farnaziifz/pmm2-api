@@ -18,4 +18,5 @@ export class CreateProductDTO {
   readonly details: string[];
   readonly description: string;
   readonly subtext: string;
+  readonly hasExist: boolean;
 }

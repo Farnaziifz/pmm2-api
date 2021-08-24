@@ -19,4 +19,5 @@ export const ProductsSchema = new mongoose.Schema({
   details: Array,
   description: String,
   subtext: String,
+  hasExist: Boolean,
 });

@@ -19,4 +19,6 @@ export interface Products extends Document {
   readonly details: string[];
   readonly description: string;
   readonly subtext: string;
+  readonly hasExist: boolean;
+
 }
