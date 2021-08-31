@@ -19,7 +19,7 @@ export class BasketController {
   constructor(private basketService: BasketService) {}
 
   @Get('/:id')
-  @UseGuards(AuthGuard('jwt'))
+//   @UseGuards(AuthGuard('jwt'))
   async getUserBasket(@Res() res, @Param('id') id) {
     const data = await this.basketService.getUserBasket(id);
     if (!data) throw new NotFoundException('data does not exist!');
@@ -30,6 +30,7 @@ export class BasketController {
   @UseGuards(AuthGuard('jwt'))
   async createBasket(@Res() res, @Body() createBasketDTO: CreateBasketDTO) {
     const data = await this.basketService.createBasket(createBasketDTO);
+    console.log(data);
     return res.status(HttpStatus.OK).json({
       statusCode: 200,
       message: 'data added succefuly',
