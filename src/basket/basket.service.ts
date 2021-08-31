@@ -27,4 +27,8 @@ export class BasketService {
       const data  = await this.BasketModel.findByIdAndUpdate(id, createBasketDTO, {new: true})
       return data
   }
+  async deleteBasket(id): Promise<any> {
+    const data = await this.BasketModel.findByIdAndRemove(id)
+    return data
+  }
 }

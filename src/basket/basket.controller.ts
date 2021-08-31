@@ -9,6 +9,7 @@ import {
   NotFoundException,
   UseGuards,
   Put,
+  Delete,
 } from '@nestjs/common';
 import { BasketService } from './basket.service';
 import { CreateBasketDTO } from './dto/create-basket.dto';
@@ -19,7 +20,7 @@ export class BasketController {
   constructor(private basketService: BasketService) {}
 
   @Get('/:id')
-//   @UseGuards(AuthGuard('jwt'))
+  //   @UseGuards(AuthGuard('jwt'))
   async getUserBasket(@Res() res, @Param('id') id) {
     const data = await this.basketService.getUserBasket(id);
     if (!data) throw new NotFoundException('data does not exist!');
@@ -49,6 +50,17 @@ export class BasketController {
     return res.status(HttpStatus.OK).json({
       statusCode: 200,
       message: 'data has been successfully updated',
+      data,
+    });
+  }
+  @Delete('/delete/:id')
+  @UseGuards(AuthGuard('jwt'))
+  async deleteItem(@Res() res, @Param('id') id) {
+    const data = await this.basketService.deleteBasket(id);
+    if (!data) throw new NotFoundException('data does not exist');
+    return res.status(HttpStatus.OK).json({
+      statusCode: 200,
+      message: 'data has been deleted',
       data,
     });
   }
