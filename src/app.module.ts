@@ -13,12 +13,12 @@ import { FormModule } from './contact/form/form.module';
 import { InfoModule } from './contact/info/info.module';
 import { ProductModule } from './product/product.module';
 import { BlogModule } from './blog/blog.module';
-// import { BlogCommentModule } from './blog-comment/blog-comment.module';
+import { BlogCommentModule } from './blog-comment/blog-comment.module';
 import { MulterModule } from '@nestjs/platform-express';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { CertsModule } from './certs/certs.module';
-// import { ProductCommentModule } from './product-comment/product-comment.module';
+import { ProductCommentModule } from './product-comment/product-comment.module';
 import { ServicesModule } from './services/services.module';
 import { TeamsModule } from './teams/teams.module';
 import { PartnersModule } from './partners/partners.module';
@@ -46,9 +46,9 @@ import { BasketModule } from './basket/basket.module';
     InfoModule,
     ProductModule,
     BlogModule,
-    // BlogCommentModule,
+    BlogCommentModule,
     CertsModule,
-    // ProductCommentModule,
+    ProductCommentModule,
     ServicesModule,
     TeamsModule,
     PartnersModule,
