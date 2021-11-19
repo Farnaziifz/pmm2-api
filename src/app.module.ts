@@ -24,6 +24,7 @@ import { TeamsModule } from './teams/teams.module';
 import { PartnersModule } from './partners/partners.module';
 import { FaqModule } from './faq/faq.module';
 import { BasketModule } from './basket/basket.module';
+import { PaymentModule } from './payment/payment.module';
 
 @Module({
   imports: [
@@ -54,6 +55,7 @@ import { BasketModule } from './basket/basket.module';
     PartnersModule,
     FaqModule,
     BasketModule,
+    PaymentModule,
   ],
   controllers: [AppController],
   providers: [AppService],
