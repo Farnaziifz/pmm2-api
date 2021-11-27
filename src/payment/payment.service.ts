@@ -24,5 +24,4 @@ export class PaymentService {
       });
     return res.data;
   }
-  
 }
