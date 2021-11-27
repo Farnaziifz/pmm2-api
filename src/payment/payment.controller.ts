@@ -21,14 +21,12 @@ export class PaymentController {
 
   @Post('create')
   async getPeyment(@Res() res, @Body() createPaymentDTO: CreatePaymentDTO) {
-    const data = await this.paymentService.createOrder(createPaymentDTO);
-    console.log(data);
-    return res
-      .status(HttpStatus.OK)
-      .json({
-        data,
-        statusCode: 200,
-        message: 'order added succefuly',
-      });
+    const farnaz = await this.paymentService.createOrder(createPaymentDTO);
+    console.log('controool', farnaz);
+    return res.status(HttpStatus.OK).json({
+      farnaz,
+      statusCode: 200,
+      message: 'order added succefuly',
+    });
   }
 }
