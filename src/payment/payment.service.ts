@@ -1,7 +1,5 @@
 import { Injectable } from '@nestjs/common';
 import { HttpService } from '@nestjs/axios';
-import { AxiosResponse } from 'axios';
-import { Observable } from 'rxjs';
 import { CreatePaymentDTO } from './dto/create-payment.dto';
 import axios from 'axios';
 
