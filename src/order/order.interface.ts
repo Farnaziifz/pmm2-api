@@ -1,6 +1,12 @@
 import { Document } from 'mongoose';
 
 export interface Order extends Document {
-  readonly title: string;
-  readonly description: string;
+  readonly status: string;
+  readonly track_id: string;
+  readonly id: string;
+  readonly order_id: string;
+  readonly amount: string;
+  readonly card_no: string;
+  readonly hashed_card_no: string;
+  readonly date: string;
 }

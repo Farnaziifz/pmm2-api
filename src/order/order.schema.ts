@@ -1,6 +1,12 @@
 import * as mongoose from 'mongoose';
 
 export const OrderSchema = new mongoose.Schema({
-  title: String,
-  description: String,
+  status: String,
+  track_id: String,
+  id: String,
+  order_id: String,
+  amount: String,
+  card_no: String,
+  hashed_card_no: String,
+  date: String,
 });

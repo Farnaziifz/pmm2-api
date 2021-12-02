@@ -22,12 +22,10 @@ export class PaymentController {
   @Post('create')
   async getPeyment(@Res() res, @Body() createPaymentDTO: CreatePaymentDTO) {
     const data = await this.paymentService.createOrder(createPaymentDTO);
-    console.log('controool', data);
     return res.status(HttpStatus.OK).json({
       data,
       statusCode: 200,
       message: 'order added succefuly',
     });
-    // return res.redirect(data.link);
   }
 }
