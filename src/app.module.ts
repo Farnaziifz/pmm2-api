@@ -26,6 +26,7 @@ import { FaqModule } from './faq/faq.module';
 import { BasketModule } from './basket/basket.module';
 import { PaymentModule } from './payment/payment.module';
 import { OrderModule } from './order/order.module';
+import { AddressModule } from './address/address.module';
 
 @Module({
   imports: [
@@ -58,6 +59,7 @@ import { OrderModule } from './order/order.module';
     BasketModule,
     PaymentModule,
     OrderModule,
+    AddressModule,
   ],
   controllers: [AppController],
   providers: [AppService],

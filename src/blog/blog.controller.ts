@@ -28,7 +28,7 @@ export class BlogController {
   @Get('byCat/:id')
   async getBlogByCat(@Res() res, @Param('id') id) {
     const data = await this.blogService.getBlogByCat(id);
-    return res.statsu(HttpStatus.OK).json({ data, statusCode: 200 });
+    return res.status(HttpStatus.OK).json({ data, statusCode: 200 });
   }
 
   @Post()
