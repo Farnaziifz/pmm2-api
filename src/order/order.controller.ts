@@ -23,14 +23,14 @@ export class OrderController {
     if (data.status === 100) {
       return res.redirect(
         HttpStatus.MOVED_PERMANENTLY,
-        `https://localhost:8080/result/1/${data.payment.track_id}/${data.order_id}/${data.amount}/${data.payment.date}/${data.id}`,
+        `https://pmpbodypharm.ir/result/1/${data.payment.track_id}/${data.order_id}/${data.amount}/${data.payment.date}/${data.id}`,
       );
     }
     if (data.status !== 100) {
       console.log(data);
       return res.redirect(
         HttpStatus.MOVED_PERMANENTLY,
-        `https://localhost:8080/result/0`,
+        `https://pmpbodypharm.ir/result/0`,
       );
     }
     return res.status(HttpStatus.OK).json({
