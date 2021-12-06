@@ -20,11 +20,10 @@ export class OrderController {
   @Post('create')
   async createProduct(@Res() res, @Body() createOrderDTO: CreateOrderDTO) {
     const data = await this.orderService.getOrderStatus(createOrderDTO);
-    console.log(data);
     if (data.status === 100) {
       return res.redirect(
         HttpStatus.MOVED_PERMANENTLY,
-        `https://localhost:8080/result/1/${data.payment.track_id}/${data.order_id}/${data.amount}/${data.payment.date}`,
+        `https://localhost:8080/result/1/${data.payment.track_id}/${data.order_id}/${data.amount}/${data.payment.date}/${data.id}`,
       );
     }
     if (data.status !== 100) {
