@@ -4,6 +4,7 @@ import { Model } from 'mongoose';
 import { User } from '../user/user';
 import { LoginDTO, RegisterDTO } from '../auth/auth.dto';
 import * as bcrypt from 'bcrypt';
+import { CreateUserDTO } from '../user/dto/create-user.dto';
 
 @Injectable()
 export class UserService {
@@ -51,5 +52,16 @@ export class UserService {
   async findByPayload(payload: any) {
     const { username } = payload;
     return await this.userModel.findOne({ username });
+  }
+  async getUserById(id): Promise<User> {
+    const data = await this.userModel.findById(id).exec();
+    return data;
+  }
+  async updateUser(id, createUserDTO: CreateUserDTO): Promise<User> {
+    const data = await this.userModel.findByIdAndUpdate(id, createUserDTO, {
+      new: true,
+    });
+
+    return data;
   }
 }

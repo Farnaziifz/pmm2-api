@@ -1,6 +1,4 @@
-import { Document } from 'mongoose';
-
-export interface User extends Document {
+export class CreateUserDTO {
   username: string;
   f_name: string;
   l_name: string;
