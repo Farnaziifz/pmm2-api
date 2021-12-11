@@ -40,7 +40,7 @@ export class FactorController {
 
   @Get('/:id')
   async getProduct(@Res() res, @Param('id') id) {
-    const data = await this.factorService.getFactorByUserId(id);
+    const data = await this.factorService.getFactorById(id);
     if (!data) throw new NotFoundException('product does not exist!');
     return res.status(HttpStatus.OK).json({ data, statusCode: 200 });
   }
