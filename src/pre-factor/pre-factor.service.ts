@@ -19,7 +19,7 @@ export class PreFactorService {
   }
 
   async getServicesByUserId(id): Promise<PreFactor> {
-    const data = await this.PreFactorModel.find({ user_id: id });
+    const data = await this.PreFactorModel.find({ order_id: id });
     return data;
   }
 }
