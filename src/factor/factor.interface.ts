@@ -8,5 +8,6 @@ export interface Factor extends Document {
   readonly date: string;
   readonly user_id: string;
   readonly status: boolean;
+  readonly user_name: string;
   readonly product: string[];
 }

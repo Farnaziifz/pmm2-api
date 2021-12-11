@@ -5,6 +5,7 @@ export class CreateFactorDTO {
   readonly amount: string;
   readonly date: string;
   readonly user_id: string;
+  readonly user_name: string;
   readonly status: boolean;
   readonly product: string[];
 }

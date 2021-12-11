@@ -9,4 +9,5 @@ export const FactorSchema = new mongoose.Schema({
   user_id: String,
   status: Boolean,
   product: Array,
+  user_name: String,
 });
