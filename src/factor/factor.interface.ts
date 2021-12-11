@@ -11,5 +11,6 @@ export interface Factor extends Document {
   readonly user_name: string;
   readonly product: string[];
   readonly user_address: string;
+  readonly code: string;
 
 }

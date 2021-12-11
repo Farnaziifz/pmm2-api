@@ -11,4 +11,5 @@ export const FactorSchema = new mongoose.Schema({
   product: Array,
   user_name: String,
   user_address: String,
+  code: String,
 });
