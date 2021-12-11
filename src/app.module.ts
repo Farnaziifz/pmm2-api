@@ -28,8 +28,6 @@ import { PaymentModule } from './payment/payment.module';
 import { OrderModule } from './order/order.module';
 import { AddressModule } from './address/address.module';
 import { InqueryModule } from './inquery/inquery.module';
-// import { FacotrModule } from './facotr/facotr.module';
-import { FactorController } from './factor/factor.controller';
 import { FactorModule } from './factor/factor.module';
 import { PreFactorModule } from './pre-factor/pre-factor.module';
 
@@ -66,11 +64,10 @@ import { PreFactorModule } from './pre-factor/pre-factor.module';
     OrderModule,
     AddressModule,
     InqueryModule,
-    // FacotrModule,
     FactorModule,
     PreFactorModule,
   ],
-  controllers: [AppController, FactorController],
+  controllers: [AppController],
   providers: [AppService],
 })
 export class AppModule {}

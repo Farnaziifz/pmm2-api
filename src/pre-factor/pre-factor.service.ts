@@ -22,6 +22,4 @@ export class PreFactorService {
     const data = await this.PreFactorModel.find({ user_id: id });
     return data;
   }
-
-  
 }
