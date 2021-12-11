@@ -30,6 +30,7 @@ import { AddressModule } from './address/address.module';
 import { InqueryModule } from './inquery/inquery.module';
 import { FactorModule } from './factor/factor.module';
 import { PreFactorModule } from './pre-factor/pre-factor.module';
+import { DiscoutModule } from './discout/discout.module';
 
 @Module({
   imports: [
@@ -66,6 +67,7 @@ import { PreFactorModule } from './pre-factor/pre-factor.module';
     InqueryModule,
     FactorModule,
     PreFactorModule,
+    DiscoutModule,
   ],
   controllers: [AppController],
   providers: [AppService],
