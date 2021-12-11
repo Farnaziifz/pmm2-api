@@ -10,4 +10,5 @@ export const FactorSchema = new mongoose.Schema({
   status: Boolean,
   product: Array,
   user_name: String,
+  user_address: String,
 });

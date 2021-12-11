@@ -8,4 +8,5 @@ export class CreateFactorDTO {
   readonly user_name: string;
   readonly status: boolean;
   readonly product: string[];
+  readonly user_address: string;
 }

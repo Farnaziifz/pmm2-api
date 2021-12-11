@@ -10,4 +10,6 @@ export interface Factor extends Document {
   readonly status: boolean;
   readonly user_name: string;
   readonly product: string[];
+  readonly user_address: string;
+
 }
